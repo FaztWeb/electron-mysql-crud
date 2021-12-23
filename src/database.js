@@ -1,14 +1,17 @@
-const mysql = require('promise-mysql');
+const mysql = require('promise-mysql')
+const config = require('./config')
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'faztpassword',
-  database: 'electrondb'
-});
+let connection = null
 
-function getConnection() {
-  return connection;
+connection = mysql.createConnection({
+  host: config.dbhost,
+  user: config.dbuser,
+  password: config.dbpass,
+  database: config.dbname
+})
+
+function getConnection () {
+  return connection
 }
 
-module.exports = { getConnection };
+module.exports = { getConnection }
